@@ -1,0 +1,7 @@
+jsonlines
+torch
+ipykernel
+ipython
+jupyter
+numpy
+pandas
