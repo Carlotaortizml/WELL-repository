@@ -131,3 +131,6 @@ dmypy.json
 .env
 preprocessed_data_level1/
 raw_data/
+
+checkpoint-epoch-10/
+checkpoint-epoch-50/
