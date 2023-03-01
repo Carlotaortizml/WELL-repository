@@ -5,3 +5,4 @@ ipython
 jupyter
 numpy
 pandas
+transformers

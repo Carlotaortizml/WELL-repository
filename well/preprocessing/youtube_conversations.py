@@ -1,6 +1,7 @@
 import pandas as pd
 import re
 import numpy as np
+from well.params import *
 
 
 def create_input_output_df(df: pd.DataFrame) -> pd.DataFrame:
@@ -8,6 +9,7 @@ def create_input_output_df(df: pd.DataFrame) -> pd.DataFrame:
     preprocessed_df["transcript_id"] = -1
     preprocessed_df["input"] = ""
     preprocessed_df["output"] = ""
+    preprocessed_df["knowledge"] = ""
 
     row_cursor = 0
     i = 0
@@ -30,6 +32,7 @@ def create_input_output_df(df: pd.DataFrame) -> pd.DataFrame:
             preprocessed_df["input"][row_cursor] = client_text
             preprocessed_df["output"][row_cursor] = therapist_text
             preprocessed_df["transcript_id"][row_cursor] = transcript_id
+            preprocessed_df["knowledge"][row_cursor] = sub_df["topic"][i_prior]
             row_cursor += 1
     return preprocessed_df[preprocessed_df.transcript_id != -1]
 
@@ -50,7 +53,7 @@ def get_df_with_joined_inputs(input_output_df:pd.DataFrame)->pd.DataFrame:
     input_output_df.drop(columns="joined_inputs", inplace=True)
     return input_output_df
 
-def create_preprocessed_file(path_original="/home/moritzb6626/code/Carlotaortizml/WELL-repository/raw_data/youtube_conversations.csv", path_target="/home/moritzb6626/code/Carlotaortizml/WELL-repository/preprocessed_data_level1/chats/preprocessed_youtube-conversations.csv"):
+def create_preprocessed_file(path_original, path_target):
     df = pd.read_csv(path_original)
     df = df[["transcript_id", "topic", "utterance_id", "interlocutor", "utterance_text", "main_therapist_behaviour", "client_talk_type"]]
     input_output_df = create_input_output_df(df)
@@ -59,5 +62,6 @@ def create_preprocessed_file(path_original="/home/moritzb6626/code/Carlotaortizm
 
 if __name__ == "__main__":
     print(__file__)
-
-    create_preprocessed_file()
+    # TODO might have to add knowledge as column (e.g. the topic of the conversation)
+    create_preprocessed_file(path_original=YOUTUBE_CONVERSATIONS_RAW_PATH,
+                             path_target=YOUTUBE_CONVERSATIONS_PROCESSED_PATH)
