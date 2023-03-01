@@ -1,11 +1,10 @@
-from datetime import datetime
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from well.frontend.chatbot import ChatBot
+from well.ml_logic.model import MLModel
 import uvicorn
 
 app = FastAPI()
-bot = ChatBot()
+bot = MLModel()
 
 app.add_middleware(
     CORSMiddleware,

@@ -1,7 +1,6 @@
 import streamlit as st
 from streamlit_chat import message
 import requests
-from urllib.request import urlopen
 from well.utils import Utils
 from well.params import *
 
