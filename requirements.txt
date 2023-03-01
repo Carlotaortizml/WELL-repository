@@ -5,7 +5,11 @@ ipython
 jupyter
 numpy
 pandas
+<<<<<<< HEAD
 fastapi
 uvicorn
 streamlit
 streamlit_chat
+=======
+transformers
+>>>>>>> e48149ac19aca655c52b2ea7b59a27ca2c654127
