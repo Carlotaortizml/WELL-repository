@@ -4,13 +4,13 @@ class MLModel:
     def __init__(self):
         self.tokenizer = AutoTokenizer.from_pretrained("microsoft/GODEL-v1_1-base-seq2seq")
         self.model = AutoModelForSeq2SeqLM.from_pretrained("microsoft/GODEL-v1_1-base-seq2seq")
-        self.history = []
 
     def predict(self, input):
         instruction = 'Instruction: given a dialog context, you need to response empathically'
         knowledge = '  '
+        history = []
 
-        s = list(sum(self.history, ()))
+        s = list(sum(history, ()))
         s.append(input)
         dialog = ' EOS ' .join(s)
         #print(dialog)
@@ -31,6 +31,6 @@ class MLModel:
 
 
         response = self.tokenizer.decode(output[0], skip_special_tokens=True)
-        self.history.append((input, response))
-        print(self.history)
-        return self.history
+        #history.append((input, response))
+        history.append(response)
+        return history

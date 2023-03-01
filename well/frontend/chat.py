@@ -23,7 +23,7 @@ if 'past' not in st.session_state:
     st.session_state["past"] = []
 
 def query(payload):
-    url = f"{API_URL}:{API_PORT}/send"
+    url = f"{BASE_URL}/send"
     if util.check_connection():
         params = {"input_text": payload}
         output = requests.post(

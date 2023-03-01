@@ -22,9 +22,9 @@ def root():
 def get_response(input_text: str):
     input_text = str(input_text)
     response = bot.predict(input_text)
-    latest_reply = response[-1][1] if response else None
-    print(latest_reply)
-    return {"response": latest_reply}
+    #latest_reply = response[-1][1] if response else None
+    reply = response[0] if response else None
+    return {"response": reply}
 
 
 if __name__ == "__main__":

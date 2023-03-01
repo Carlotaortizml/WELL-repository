@@ -10,3 +10,4 @@ FULL_JSONL_PATH=os.environ.get("FULL_JSONL_PATH")
 
 API_URL = "http://127.0.0.1"
 API_PORT = "8080"
+BASE_URL = f"{API_URL}:{API_PORT}"
