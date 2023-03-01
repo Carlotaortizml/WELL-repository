@@ -2,6 +2,9 @@ import streamlit as st
 from streamlit_chat import message
 import requests
 
+user_input = ""
+output = ""
+
 st.set_page_config(
     page_title = "WELL",
     page_icon=":flower:"
@@ -21,20 +24,30 @@ API_PORT = "8080"
 
 def query(payload):
     url = f"{API_URL}:{API_PORT}/send"
-    response = requests.post(
+    params = {"input_text": payload}
+    output = requests.post(
                     url,
-                    data={"input_text": payload}
-                ).json()
-    return response
+                    params=params
+                )
+    if output.status_code == 200:
+        response = output.json()
+        print(response['response'])
+        return response['response']
 
 def get_text():
     user_input = st.text_input("You: ")
     return user_input
 
-#container = st.container()
-#container.write("container inner")
 user_input = get_text()
+placeholder = st.empty()
 
 if user_input:
     output = query(user_input)
-    st.write(output)
+
+    st.session_state.past.append(user_input)
+    st.session_state.generated.append(output)
+
+if st.session_state["generated"]:
+    for i in range(len(st.session_state['generated'])-1, -1, -1):
+            message(st.session_state['past'][i], is_user=True, key=str(i) + '_user')
+            message(st.session_state["generated"][i], key=str(i))

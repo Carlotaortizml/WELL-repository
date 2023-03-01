@@ -1,10 +1,11 @@
 from datetime import datetime
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from well.frontend.chatbot import predict
+from well.frontend.chatbot import ChatBot
 import uvicorn
 
 app = FastAPI()
+bot = ChatBot()
 
 app.add_middleware(
     CORSMiddleware,
@@ -21,9 +22,9 @@ def root():
 @app.post("/send")
 def get_response(input_text: str):
     input_text = str(input_text)
-    response = predict(input_text)
-
-    return {"response": response}
+    response = bot.predict(input_text)
+    latest_reply = response[-1][1] if response else None
+    return {"response": latest_reply}
 
 
 if __name__ == "__main__":
