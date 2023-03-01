@@ -5,3 +5,7 @@ ipython
 jupyter
 numpy
 pandas
+fastapi
+uvicorn
+streamlit
+streamlit_chat

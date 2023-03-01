@@ -41,7 +41,7 @@ def predict(input, history=[]):
     response = tokenizer.decode(output[0], skip_special_tokens=True)
     history.append((input, response))
 
-    return history
+    return history[0][1]
 
 def get_text():
     input_text = st.text_input("You: ")
