@@ -1,7 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from well.ml_logic.model import MLModel
-import uvicorn
 
 app = FastAPI()
 bot = MLModel()
@@ -25,7 +24,3 @@ def get_response(input_text: str):
     #latest_reply = response[-1][1] if response else None
     reply = response[0] if response else None
     return {"response": reply}
-
-
-if __name__ == "__main__":
-    uvicorn.run("well.api.main:app", host="127.0.0.1", port=8080)
