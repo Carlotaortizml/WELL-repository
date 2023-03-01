@@ -1,9 +1,13 @@
 import streamlit as st
 from streamlit_chat import message
 import requests
+from urllib.request import urlopen
+from well.utils import Utils
+from well.params import *
 
 user_input = ""
 output = ""
+util = Utils()
 
 st.set_page_config(
     page_title = "WELL",
@@ -19,27 +23,26 @@ if 'generated' not in st.session_state:
 if 'past' not in st.session_state:
     st.session_state["past"] = []
 
-API_URL = "http://127.0.0.1"
-API_PORT = "8080"
-
 def query(payload):
     url = f"{API_URL}:{API_PORT}/send"
-    params = {"input_text": payload}
-    output = requests.post(
-                    url,
-                    params=params
-                )
-    if output.status_code == 200:
-        response = output.json()
-        print(response['response'])
-        return response['response']
+    if util.check_connection():
+        params = {"input_text": payload}
+        output = requests.post(
+                        url,
+                        params=params
+                    )
+
+        if output.status_code == 200:
+            response = output.json()
+            return response['response']
+    else:
+        return "Failed to connect to server"
 
 def get_text():
     user_input = st.text_input("You: ")
     return user_input
 
 user_input = get_text()
-placeholder = st.empty()
 
 if user_input:
     output = query(user_input)
