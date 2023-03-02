@@ -8,6 +8,6 @@ YOUTUBE_CONVERSATIONS_JSONL_PATH=os.environ.get("YOUTUBE_CONVERSATIONS_JSONL_PAT
 FULL_PROCESSED_PATH=os.environ.get("FULL_PROCESSED_PATH")
 FULL_JSONL_PATH=os.environ.get("FULL_JSONL_PATH")
 
-API_URL = os.environ.get("API_URL")
-API_PORT = os.environ.get("API_PORT")
+API_URL=os.environ.get("API_URL")
+API_PORT=os.environ.get("API_PORT")
 BASE_URL = f"{API_URL}:{API_PORT}"
