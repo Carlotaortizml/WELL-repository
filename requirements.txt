@@ -1,5 +1,4 @@
 jsonlines
-torch
 ipykernel
 ipython
 jupyter
