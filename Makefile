@@ -14,4 +14,4 @@ run_api:
 	uvicorn well.api.main:app --port 8080 --reload
 
 run_streamlit:
-	streamlit run well/frontend/chat.py
+	streamlit run well/frontend/chat_demo.py

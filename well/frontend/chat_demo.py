@@ -20,7 +20,7 @@ if "temp_user_input" not in st.session_state:
 
 
 def query(payload):
-    url = f"{BASE_URL}/send"
+    url = f"{BASE_URL}/chat"
     if util.check_connection():
         params = {"input_text": payload}
         output = requests.post(
@@ -45,12 +45,14 @@ def get_text():
 placeholder = st.empty()
 user_input = get_text()
 
-if user_input:
-    st.session_state["input_history"].append(user_input)
-    output = query(user_input)
-    st.session_state["output_history"].append(output)
+with placeholder.container():
+    if user_input:
+        output = query(user_input)
+        st.session_state["input_history"].append(user_input)
+        st.session_state["output_history"].append(output)
 
-if st.session_state["input_history"]:
-    for i in range(len(st.session_state["input_history"])):
-        message(st.session_state["input_history"][i], key=str(i) + '_user', avatar_style="adventurer", is_user=True)
-        message(st.session_state["output_history"][i], key=str(i) + '_bot', seed=123, is_user=False)
+with placeholder.container():
+    if st.session_state["input_history"]:
+        for i in range(len(st.session_state["input_history"])):
+            message(st.session_state["input_history"][i], key=str(i) + '_user', avatar_style="adventurer", is_user=True)
+            message(st.session_state["output_history"][i], key=str(i) + '_bot', seed=123, is_user=False)
