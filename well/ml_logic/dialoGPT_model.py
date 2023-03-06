@@ -3,8 +3,8 @@ import torch
 
 class DialoGPTModel:
     def __init__(self):
-        self.tokenizer = AutoTokenizer.from_pretrained("/Users/macbookpro/Desktop/WELL-repository/DialoGPT-small")
-        self.model = AutoModelWithLMHead.from_pretrained("/Users/macbookpro/Desktop/WELL-repository/DialoGPT-small")
+        self.tokenizer = AutoTokenizer.from_pretrained("/Users/macbookpro/Desktop/WELL-repository/raw_data/DialoGPT-small")
+        self.model = AutoModelWithLMHead.from_pretrained("/Users/macbookpro/Desktop/WELL-repository/raw_data/DialoGPT-small")
 
     def predict(self, user_input):
         new_user_input_ids = self.tokenizer.encode(user_input + self.tokenizer.eos_token, return_tensors='pt')

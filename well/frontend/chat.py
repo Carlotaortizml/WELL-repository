@@ -20,7 +20,7 @@ if "temp_user_input" not in st.session_state:
 
 
 def query(payload):
-    url = f"{BASE_URL}/send"
+    url = f"{BASE_URL}/chat"
     if util.check_connection():
         params = {"input_text": payload}
         output = requests.post(
