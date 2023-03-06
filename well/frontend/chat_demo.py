@@ -6,8 +6,11 @@ from well.params import *
 
 util = Utils()
 
-st.header("WELL Chat")
-st.markdown("[Github](https://github.com/Carlotaortizml/WELL-repository/tree/master/well)")
+def header(content):
+    st.markdown(f'<div style="position: fixed;top: 0;width: 100%;padding: 25px 0px;z-index:9999;"><h2>{content}</h2></div>', unsafe_allow_html=True)
+
+header("WELL Chat")
+#st.markdown("[Github](https://github.com/Carlotaortizml/WELL-repository/tree/master/well)")
 
 if "output_history" not in st.session_state:
     st.session_state["output_history"] = []
