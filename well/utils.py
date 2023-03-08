@@ -11,7 +11,7 @@ class Utils:
 
     def check_connection(self):
         try:
-            url = self.BASE_URL
+            url = self.API_URL
             self.connection = True if urlopen(url, timeout=3) else False
         except:
             self.connection = False

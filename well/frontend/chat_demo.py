@@ -24,13 +24,16 @@ if "temp_user_input" not in st.session_state:
 
 
 def query(payload):
-    url = f"{BASE_URL}/chat"
+    url = f"{API_URL}/chat"
+    # print(url)
     if util.check_connection():
         params = {"input_text": payload}
         output = requests.post(
                         url,
                         params=params
                     )
+
+        # print(output)
 
         if output.status_code == 200:
             response = output.json()
