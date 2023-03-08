@@ -3,11 +3,11 @@ import torch
 
 class DialoGPTModel:
     def __init__(self):
-        self.tokenizer = AutoTokenizer.from_pretrained("/Users/macbookpro/Desktop/WELL-repository/raw_data/DialoGPT-small")
-        self.model = AutoModelForCausalLM.from_pretrained("/Users/macbookpro/Desktop/WELL-repository/raw_data/DialoGPT-small")
+        # self.tokenizer = AutoTokenizer.from_pretrained("/Users/macbookpro/Desktop/WELL-repository/raw_data/DialoGPT-small")
+        # self.model = AutoModelForCausalLM.from_pretrained("/Users/macbookpro/Desktop/WELL-repository/raw_data/DialoGPT-small")
 
-        # self.tokenizer = AutoTokenizer.from_pretrained("/DialoGPT-small")
-        # self.model = AutoModelForCausalLM.from_pretrained("/DialoGPT-small")
+        self.tokenizer = AutoTokenizer.from_pretrained("/DialoGPT-small")
+        self.model = AutoModelForCausalLM.from_pretrained("/DialoGPT-small")
 
 
         #self.tokenizer = AutoTokenizer.from_pretrained("https://console.cloud.google.com/storage/browser/well-project-model-bucket/finetuned-model_2023-03-06")
