@@ -1,10 +1,6 @@
 import streamlit as st
 from streamlit_chat import message
 import requests
-#from well.utils import Utils
-#from well.params import *
-
-#util = Utils()
 
 # st.set_page_config(layout="wide")
 
@@ -24,34 +20,36 @@ if "temp_user_input" not in st.session_state:
 
 
 def query(payload):
-    api_url = st.secrets["API_URL"]
-    url = f"{api_url}/chat"
-    params = {"input_text": payload}
-    output = requests.post(
-                        url,
-                        params=params
-                    )
-    if output.status_code == 200:
-            response = output.json()
-            return response['response']
-
-    # print(url)
-    '''
-    if util.check_connection():
+    if st.secrets["MODEL_TARGET"] == "streamlit":
+        api_url = st.secrets["API_URL"]
+        url = f"{api_url}/chat"
         params = {"input_text": payload}
         output = requests.post(
-                        url,
-                        params=params
-                    )
-
-        # print(output)
-
+                            url,
+                            params=params
+                        )
         if output.status_code == 200:
-            response = output.json()
-            return response['response']
+                response = output.json()
+                return response['response']
     else:
-        return "Failed to connect to server"
-    '''
+        from well.utils import Utils
+        from well.params import API_URL
+
+        util = Utils()
+
+        if util.check_connection():
+            url = f"{API_URL}/chat"
+            params = {"input_text": payload}
+            output = requests.post(
+                            url,
+                            params=params
+                        )
+
+            if output.status_code == 200:
+                response = output.json()
+                return response['response']
+        else:
+            return "Failed to connect to server"
 
 def clear_text():
     st.session_state["temp_user_input"] = st.session_state["user_input"]
