@@ -23,7 +23,6 @@ def root():
 def get_response(input_text: str):
     input_text = str(input_text)
     response = bot.predict(input_text)
-    #latest_reply = response[-1][1] if response else None
     reply = response[0] if response else None
     return {"response": reply}
 
@@ -31,6 +30,5 @@ def get_response(input_text: str):
 def get_response(input_text: str):
     input_text = str(input_text)
     response = model.predict(input_text)
-    #latest_reply = response[-1][1] if response else None
     reply = response if response else None
     return {"response": reply}
