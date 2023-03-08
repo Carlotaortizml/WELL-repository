@@ -2,7 +2,7 @@ import streamlit as st
 from streamlit_chat import message
 import requests
 #from well.utils import Utils
-from well.params import *
+#from well.params import *
 
 #util = Utils()
 
@@ -24,7 +24,8 @@ if "temp_user_input" not in st.session_state:
 
 
 def query(payload):
-    url = f"{API_URL}/chat"
+    api_url = st.secrets["API_URL"]
+    url = f"{api_url}/chat"
     params = {"input_text": payload}
     output = requests.post(
                         url,
