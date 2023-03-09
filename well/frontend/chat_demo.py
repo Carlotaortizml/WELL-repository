@@ -5,7 +5,7 @@ import requests
 # st.set_page_config(layout="wide")
 
 def header(content):
-    st.markdown(f'<div style="position: fixed;top: 0;width: 100%;padding: 25px 0px;z-index:9999;"><h2>{content}</h2></div>', unsafe_allow_html=True)
+    st.markdown(f'<div style="position: fixed;top: 0;width: 100%;padding: 25px 0px;z-index:9999;"><h2 style="color: white;">{content}</h2></div>', unsafe_allow_html=True)
 
 header("WELL Chat")
 
