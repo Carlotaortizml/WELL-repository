@@ -56,7 +56,7 @@ def clear_text():
     st.session_state["user_input"] = ""
 
 def get_text():
-    st.text_input("Talk with WELL: ", key="user_input", on_change=clear_text)
+    st.text_input("Talk to WELL: ", key="user_input", on_change=clear_text)
     return st.session_state["temp_user_input"]
 
 placeholder = st.empty()
